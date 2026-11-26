@@ -1,0 +1,21 @@
+{
+  "name": "el-vortice-de-los-cuatro-cielos",
+  "version": "0.11.0",
+  "description": "El Vórtice de los Cuatro Cielos — MMORPG de mitología chilena en el navegador (Three.js + Vite)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.17.0",
+    "vite": "^5.4.21"
+  },
+  "private": true,
+  "type": "module"
+}

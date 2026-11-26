@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Vórtice de los Cuatro Cielos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<canvas id="lienzo"></canvas>
+<div id="placas"></div>
+
+<section id="cargando" class="pantalla"><h1>El Vórtice de los Cuatro Cielos</h1><p>Abriendo el velo…</p></section>
+
+<section id="portada" class="pantalla" hidden>
+  <div class="caja portadaCaja">
+    <p class="sobre">MMORPG de mitología chilena</p>
+    <h1>El Vórtice de los Cuatro Cielos</h1>
+    <p class="intro">Tres pueblos cuentan cómo nació el mundo y cómo se rompió. Escúchalos antes de elegir tu senda.</p>
+    <button type="button" id="portadaVer" class="principal">Comenzar</button>
+    <button type="button" id="portadaSaltar" class="secundario">Saltar introducción</button>
+    <p class="nota">Con sonido · se recomiendan auriculares</p>
+  </div>
+</section>
+
+<section id="acceso" class="pantalla" hidden>
+  <form id="accesoForm" class="caja">
+    <p class="sobre">MMORPG de mitología chilena · prototipo</p>
+    <h1>El Vórtice de los Cuatro Cielos</h1>
+    <p class="intro">El Nagmapu se desequilibra y el velo entre los planos se rompe. Tres tradiciones luchan por el destino del mundo. No hay bandos buenos ni malos: hay tres formas de sobrevivir.</p>
+    <h3 class="subRanuras">Partidas guardadas</h3>
+    <div id="ranuras"></div>
+    <p id="nuevaTxt" class="nota"></p>
+    <label>Nombre de tu personaje<input id="accesoNombre" maxlength="20" autocomplete="off" placeholder="Ej.: Ñancu"></label>
+    <button type="submit" class="principal">Crear personaje nuevo</button>
+    <p id="accesoError" class="error"></p>
+    <button type="button" id="verIntro" class="secundario">Ver introducción</button>
+    <p class="nota">Arte de El Kultrun de Plata integrado. Prototipo en desarrollo.</p>
+  </form>
+</section>
+
+<section id="facciones" class="pantalla" hidden>
+  <h2 class="titPant">Elige tu facción</h2>
+  <div id="listaFacciones"></div>
+  <p class="nota centro">Manuel Rodríguez, mercenario sin facción, está disponible en las tres.</p>
+</section>
+
+<section id="clases" class="pantalla" hidden>
+  <h2 class="titPant" id="clasesTitulo"></h2>
+  <div class="clasesCuerpo">
+    <div id="listaClases"></div>
+    <div id="visorClase"></div>
+    <article id="fichaClase" class="ficha"></article>
+  </div>
+  <div class="accionesClase"><button id="volverFaccion">← Cambiar facción</button><button id="entrar" class="principal">Entrar al Vórtice</button></div>
+</section>
+
+<section id="juego" class="pantalla" hidden>
+  <div id="marco">
+    <div id="hudRetrato"></div>
+    <div class="hudTexto">
+      <b id="hudNombre"></b> <span class="nv">nv <b id="hudNivel">1</b></span>
+      <small id="hudClase"></small><small id="hudFaccion"></small>
+      <div id="vida" class="barraV"><s></s><em></em></div>
+      <div id="energia" class="barraV"><s></s><em></em></div>
+      <div id="xp" class="barraV fina"><s></s></div>
+    </div>
+  </div>
+  <div id="efectos"></div>
+  <div id="objetivo" hidden><div id="objRetrato"></div><div><b id="objNombre"></b><small id="objTitulo"></small><div id="objVida" class="barraV"><s></s><em></em></div></div></div>
+  <div id="jefeBarra" hidden><b></b><i><s></s></i></div>
+  <div id="mapa"><canvas></canvas><span id="region"></span><small id="coords"></small><small id="enLinea">Solo tú en línea</small></div>
+  <div id="barra"></div>
+  <div id="pasiva"></div>
+  <div id="chat"><div id="chatLog"></div><input id="chatTexto" maxlength="300" placeholder="Enter para escribir"></div>
+  <div id="ayuda">WASD mover · clic der. + arrastrar: girar con el personaje · rueda: zoom · Espacio saltar · Q esquivar · Shift correr · 1–6 combate (1 repetido = combo) · 7–8 poderes · Tab objetivo · E hablar · I inventario · M mapa · J diario · U arena · F5 guardar · F9 partidas</div>
+  <div id="mision"></div>
+  <div id="contador"><span>Mérito <b id="merito">0</b></span><span id="hora"></span></div>
+  <button id="btnCodice">Códice (C)</button>
+  <button id="btnDiario">Diario (J)</button>
+  <button id="btnPartida">Partida (F9)</button>
+  <button id="btnArena">Arena (U)</button>
+  <button id="btnSonido">♪ Sonido</button>
+  <div id="panelSonido" hidden></div>
+  <div id="pistaE"></div>
+  <section id="inventario" class="panelJuego" hidden></section>
+  <section id="menuPartida" class="panelJuego" hidden></section>
+  <section id="arenaMenu" class="panelJuego" hidden></section>
+  <section id="mapaGrande" class="panelJuego" hidden><header><b>Mapa del Vórtice</b><small>☠ campamentos enemigos · ● jefes · ● pobladores y guardias · M o Esc para cerrar</small></header><canvas></canvas></section>
+  <div id="voz" hidden></div>
+  <div id="diario" hidden></div>
+  <div id="premio" hidden></div>
+  <div id="estadoRed"></div>
+  <div id="avisos"></div>
+  <div id="dialogo" hidden></div>
+  <div id="codice" hidden></div>
+</section>
+<div id="visorArte" hidden><img alt=""></div>
+<script type="module" src="./src/main.js"></script>
+<div id="reco" hidden>
+  <div class="cine arriba"></div><div class="cine abajo"></div>
+  <div id="recoTarjeta"></div>
+  <small class="recoSaltar">E · saltar</small>
+</div>
+<div id="arenaHud" hidden></div>
+<div id="arenaVs" hidden></div>
+<div id="arenaCuenta" hidden></div>
+<div id="arenaBanner" hidden></div>
+<div id="arenaFin" hidden></div>
+<div id="intro" hidden>
+  <div class="cine arriba"></div><div class="cine abajo"></div>
+  <div id="introRotulo"></div><div id="introSub"></div>
+  <div id="introTitulo"><small>Tres pueblos · un mundo roto</small><h1>El Vórtice de los Cuatro Cielos</h1></div>
+  <div id="introNegro"></div><div id="introCarga" hidden></div>
+  <button id="introSaltar" type="button">Saltar ›</button>
+</div>
+</body>
+</html>
